@@ -11,6 +11,25 @@ public class Vote {
         this.vote = vote;
     }
 
+    @Override
+    public String toString() {
+        String voteType;
+
+        try {
+            if (vote) {
+                voteType = "ZA";
+            } else {
+                voteType = "PRZECIW";
+            }
+        } catch (NullPointerException e) {
+            voteType = "WSTRZYMAŁ SIĘ";
+        }
+            
+        return voter + ": " +
+                voteType +
+                '\n';
+    }
+
     public String getVoter() {
         return voter;
     }

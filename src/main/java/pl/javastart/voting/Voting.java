@@ -27,8 +27,27 @@ public class Voting {
      * Metoda powinna pobrać głos dla każdego przekazanego głosującego i zapisać wyniki głosowania do VotingResult
      */
     VotingResult executeVoting(List<String> voters, Scanner scanner) {
+        List<String> voteSigns = List.of("z", "p", "w");
+        String voteSign = "";
+        VotingResult vr = new VotingResult();
 
-        return null; // to możesz (a nawet powinieneś/powinnaś) zmienić :)
+        for (String voter : voters) {
+            do {
+                System.out.printf("Jak głosuje %s? (z - za, p - przeciw, w - wstrzymanie się)\n", voter);
+                voteSign = scanner.nextLine();
+
+            } while (!voteSigns.contains(voteSign));
+
+            switch (voteSign) {
+                case "z" -> vr.add(new Vote(voter, true));
+                case "p" -> vr.add(new Vote(voter, false));
+                default -> vr.add(new Vote(voter, null));
+            }
+
+        }
+
+//        return null; // to możesz (a nawet powinieneś/powinnaś) zmienić :)
+        return vr;
     }
 
 }
